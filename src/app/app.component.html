@@ -1,0 +1,170 @@
+<div class="min-h-screen bg-white dark:bg-slate-900 text-slate-600 dark:text-slate-300">
+  <div class="max-w-7xl mx-auto py-12">
+    <div class="text-center">
+      <h1 class="text-center font-light text-4xl text-slate-800 dark:text-slate-100">艾爾登法環 <br class="block sm:hidden"><span class="text-3xl sm:text-4xl">全物品收集清單</span></h1>
+      <p class="pt-3 text-lg">繁體中文 | Elden Ring | patch 1.13</p>
+      <p class="pt-1 text-xs">By Devin Cheung</p>
+    </div>
+    <main class="grow">
+      <div class="px-4 sm:px-6 lg:px-8 py-8 w-full">
+        <div class="relative mb-8">
+          <div class="sm:flex sm:justify-between">
+            <div class="grid grid-flow-col sm:auto-cols-max gap-2 mb-2 sm:mb-0">
+              <button (click)="toggleHideCompleted()" class="btn">
+                @if(isHideCompleted()){
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  </svg>
+                  <span class="pl-2">顯示已收集</span>    
+                }@else {
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                  </svg>           
+                  <span class="pl-2">隱藏已收集</span>     
+                }
+              </button>
+              <button (click)="toggleHideDLC()" class="btn">
+                @if(isHideDLC()){
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                  </svg>
+                  <span class="pl-2">顯示DLC</span>    
+                }@else {
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
+                  </svg>           
+                  <span class="pl-2">隱藏DLC</span>     
+                }
+              </button>
+            </div>
+  
+            <div class="grid grid-flow-col sm:auto-cols-max gap-2">
+              <button (click)="download()" class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+                <span class="pl-2">儲存</span>
+              </button>
+              <button (click)="triggerFileInput()" class="btn">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5" />
+                </svg>            
+                <span class="pl-2">匯入</span>
+              </button>
+              <input type="file" id="fileInput" (change)="upload($event)" style="display: none;" />
+              <button (click)="toggleDarkMode()" class="btn">
+                <svg class="w-4 h-4 dark:hidden" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                  <path class="fill-current text-slate-500" d="M6.2 2C3.2 2.8 1 5.6 1 8.9 1 12.8 4.2 16 8.1 16c3.3 0 6-2.2 6.9-5.2C9.7 12.2 4.8 7.3 6.2 2Z" />
+                  <path class="fill-current text-slate-600" d="M12.5 6a.625.625 0 0 1-.625-.625 1.252 1.252 0 0 0-1.25-1.25.625.625 0 1 1 0-1.25 1.252 1.252 0 0 0 1.25-1.25.625.625 0 1 1 1.25 0c.001.69.56 1.249 1.25 1.25a.625.625 0 1 1 0 1.25c-.69.001-1.249.56-1.25 1.25A.625.625 0 0 1 12.5 6Z" />
+              </svg>
+              <svg class="w-4 h-4 hidden dark:block" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                  <path class="fill-current text-slate-200" d="M7 0h2v2H7V0Zm5.88 1.637 1.414 1.415-1.415 1.413-1.414-1.414 1.415-1.414ZM14 7h2v2h-2V7Zm-1.05 7.433-1.415-1.414 1.414-1.414 1.415 1.413-1.414 1.415ZM7 14h2v2H7v-2Zm-4.02.363L1.566 12.95l1.415-1.414 1.414 1.415-1.415 1.413ZM0 7h2v2H0V7Zm3.05-5.293L4.465 3.12 3.05 4.535 1.636 3.121 3.05 1.707Z" />
+                  <path class="fill-current text-slate-300" d="M8 4C5.8 4 4 5.8 4 8s1.8 4 4 4 4-1.8 4-4-1.8-4-4-4Z" />
+                </svg>          
+              </button>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="relative mb-4">
+              <div class="absolute bottom-0 w-full h-px bg-slate-200 dark:bg-slate-700" aria-hidden="true"></div>
+              <ul class="relative text-sm font-medium flex flex-nowrap -mx-4 sm:-mx-6 lg:-mx-8 overflow-x-scroll no-scrollbar">
+                @for(key of items.keys();track key){
+                  <li class="mr-6 last:mr-0 first:pl-4 sm:first:pl-6 lg:first:pl-8 last:pr-4 sm:last:pr-6 lg:last:pr-8">
+                    <button (click)="selectedType.set(key)" [ngClass]="selectedType()==key? 'block pb-3 text-indigo-500 whitespace-nowrap border-b-2 border-indigo-500':'block pb-3 text-slate-500 dark:text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 whitespace-nowrap'">{{itemsDisplayName.get(key)}}</button>
+                </li>
+                }
+              </ul>
+          </div>
+      </div>
+  
+        <app-list [data]="getPagedData()" [type]="selectedType()"></app-list>
+  
+        <div class="relative mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
+          <div class="flex justify-between">
+            <div class="grid grid-flow-col sm:auto-cols-max gap-2">
+              <p class="text-sm">版本v1.0.0</p>
+              <p class="text-sm underline"><a href="https://github.com/devinscheung/elden-ring-checklist" target="_blank">參與製作</a></p>
+              <p class="text-sm underline"><a href="https://github.com/devinscheung/elden-ring-checklist/issues" target="_blank">回報問題</a></p>
+            </div>
+            <div class="grid grid-flow-col sm:auto-cols-max gap-2">
+              <button (click)="isResetPageModalOpen.set(true)" class="btn-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                </svg>
+                <span class="pl-2">重設本頁</span>
+              </button>
+              <button (click)="isResetModalOpen.set(true)" class="btn-danger">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" />
+                </svg>
+                <span class="pl-2">重設所有</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+
+@if(isResetPageModalOpen()){
+  <div class="fixed inset-0 bg-slate-900 bg-opacity-30 dark:bg-slate-200/30 z-50 transition-opacity"></div>
+  <div class="fixed inset-0 z-50 overflow-hidden flex items-center my-4 justify-center px-4 sm:px-6">
+    <div class="bg-white dark:bg-slate-800 rounded shadow-lg overflow-auto max-w-lg w-full max-h-full">
+      <div class="p-5 flex space-x-4">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-rose-100 dark:bg-rose-500/30">
+          <svg class="w-4 h-4 shrink-0 fill-current text-rose-500" viewBox="0 0 16 16">
+              <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 12c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm1-3H7V4h2v5z" />
+          </svg>
+        </div>
+        <div class="w-full">
+          <div class="mb-2">
+            <div class="text-lg font-semibold text-slate-800 dark:text-slate-100">重設本頁資料</div>
+          </div>
+          <div class="text-sm mb-10">
+              <div class="space-y-2">
+                <p class="text-slate-700 dark:text-slate-200">此操作無法還原，請確保已備份資料。</p>
+              </div>
+          </div>
+          <div class="flex flex-wrap justify-end space-x-2">
+            <button (click)="isResetPageModalOpen.set(false)" class="btn">取消</button>
+            <button (click)="resetPage()" class="btn-danger">重設</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>     
+}
+
+@if(isResetModalOpen()){
+  <div class="fixed inset-0 bg-slate-900 bg-opacity-30 dark:bg-slate-200/30 z-50 transition-opacity"></div>
+  <div class="fixed inset-0 z-50 overflow-hidden flex items-center my-4 justify-center px-4 sm:px-6">
+    <div class="bg-white dark:bg-slate-800 rounded shadow-lg overflow-auto max-w-lg w-full max-h-full">
+      <div class="p-5 flex space-x-4">
+        <div class="w-10 h-10 rounded-full flex items-center justify-center shrink-0 bg-rose-100 dark:bg-rose-500/30">
+          <svg class="w-4 h-4 shrink-0 fill-current text-rose-500" viewBox="0 0 16 16">
+              <path d="M8 0C3.6 0 0 3.6 0 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 12c-.6 0-1-.4-1-1s.4-1 1-1 1 .4 1 1-.4 1-1 1zm1-3H7V4h2v5z" />
+          </svg>
+        </div>
+        <div class="w-full">
+          <div class="mb-2">
+            <div class="text-lg font-semibold text-slate-800 dark:text-slate-100">重設所有資料</div>
+          </div>
+          <div class="text-sm mb-10">
+              <div class="space-y-2">
+                <p class="text-slate-700 dark:text-slate-200">此操作無法還原，請確保已備份資料。</p>
+              </div>
+          </div>
+          <div class="flex flex-wrap justify-end space-x-2">
+            <button (click)="isResetModalOpen.set(false)" class="btn">取消</button>
+            <button (click)="reset()" class="btn-danger">重設</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>     
+}
