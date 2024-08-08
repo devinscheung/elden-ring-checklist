@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.btn {
+    @apply px-3 py-2 font-light text-sm inline-flex items-center justify-center border border-transparent rounded leading-5 shadow-sm transition duration-150 ease-in-out bg-slate-100 hover:bg-slate-200 dark:bg-slate-700 dark:hover:bg-slate-600/80 text-slate-800 dark:text-slate-100;
+}
+
+.btn-danger {
+    @apply px-3 py-2 font-light text-sm inline-flex items-center justify-center border border-transparent rounded leading-5 shadow-sm transition duration-150 ease-in-out dark:text-slate-100 bg-rose-500 hover:bg-rose-600 text-white;
+}
+
+.form-checkbox {
+    @apply bg-white dark:bg-slate-900/30 border focus:ring-0 focus:ring-offset-0 dark:disabled:bg-slate-700/30 dark:disabled:border-slate-700 dark:disabled:hover:border-slate-700 rounded text-indigo-500 checked:bg-indigo-500 dark:checked:border-transparent border-slate-300 focus:border-indigo-300 dark:border-slate-700 dark:focus:border-indigo-500/50;
+}
+
+.form-checkbox:checked {
+    @apply bg-indigo-500 dark:border-transparent;
+}
