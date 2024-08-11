@@ -33,6 +33,10 @@ export class ListComponent {
   isHideDLC = computed(() => 
     this.preferenceService.hideDLC()
   );
+
+  isHideBaseGame = computed(() => 
+    this.preferenceService.hideBaseGame()
+  );
   
   filteredItems = computed(() => {
     const search = this.searchValue().toLowerCase().trim();

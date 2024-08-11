@@ -63,6 +63,7 @@ export class AppComponent implements OnInit {
 
   isHideCompleted = computed(() => this.preferenceService.hideCompleted());
   isHideDLC = computed(() => this.preferenceService.hideDLC());
+  isHideBaseGame = computed(() => this.preferenceService.hideBaseGame());
 
   async ngOnInit() {
     this.restoreFromLocalStorage();
@@ -159,6 +160,10 @@ export class AppComponent implements OnInit {
     fileInput.click();
   }
 
+  toggleDarkMode() {
+    this.preferenceService.toggleDarkMode();
+  }
+
   toggleHideCompleted() {
     this.preferenceService.toggleHideCompleted();
   }
@@ -167,8 +172,8 @@ export class AppComponent implements OnInit {
     this.preferenceService.toggleHideDLC();
   }
 
-  toggleDarkMode() {
-    this.preferenceService.toggleDarkMode();
+  toggleHideBaseGame() {
+    this.preferenceService.toggleHideBaseGame();
   }
 
   getPagedData(){
