@@ -8,6 +8,7 @@ export class PreferenceService {
   private darkMode = signal<boolean>(false);
   hideCompleted = signal(false);
   hideDLC = signal(false);
+  hideBaseGame = signal(false);
 
   constructor() {
 
@@ -37,5 +38,9 @@ export class PreferenceService {
 
   toggleHideDLC() {
     this.hideDLC.set(!this.hideDLC());
+  }
+
+  toggleHideBaseGame() {
+    this.hideBaseGame.set(!this.hideBaseGame());
   }
 }
