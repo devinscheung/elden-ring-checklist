@@ -33,6 +33,7 @@ export class AppComponent implements OnInit {
     ['legs', signal<Item[]>([])],
     ['talismans', signal<Item[]>([])],
     ['key-items', signal<Item[]>([])],
+    ['ng', signal<Item[]>([])]
   ]);
 
   itemsDisplayName: Map<string, string> = new Map([
@@ -51,6 +52,7 @@ export class AppComponent implements OnInit {
     ['talismans', '護符'],
     ['key-items', '貴重物品'],
     // ['info', '情報'],
+    ['ng', '多周目']
   ]);
 
   selectedType = signal('melee');
