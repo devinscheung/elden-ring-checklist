@@ -73,6 +73,9 @@
 
 Devin Cheung - [Email](mailto:quail-gosling-0e@icloud.com)
 
+## 相關連結
+https://forum.gamer.com.tw/C.php?bsn=36726&snA=13520
+
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/devinscheung/elden-ring-checklist.svg?style=for-the-badge
