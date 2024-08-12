@@ -13,6 +13,9 @@
     繁體中文全物品收集清單 
     <br />
     <br />
+    <span>如果你喜歡此工具，請給這個專案一顆🌟，非常感謝!</span>
+    <br />
+    <br />
     <a href="https://eldenring.devinsc.com" target="_blank">網站連結</a>
     ·
     <a href="https://github.com/devinscheung/elden-ring-checklist/issues/new?labels=bug&template=bug-report---.md">回報問題</a>
@@ -61,7 +64,7 @@
 <!-- CONTRIBUTING -->
 ## 貢獻
 
-歡迎任何形式的貢獻！如果你喜歡此工具，請給這個專案一顆星，**非常感謝**!
+歡迎任何形式的貢獻！如果你喜歡此工具，請給這個專案一顆星🌟，**非常感謝**!
 
 * 提出 Bug/Issue 
 * 提出功能請求
