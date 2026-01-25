@@ -3,6 +3,8 @@ import { Component, computed, HostBinding, inject, OnInit, signal, WritableSigna
 import { PreferenceService } from './services/preference.service';
 import { ListComponent } from './list/list.component';
 import { Item } from './interface/item';
+import { PlatformService } from './services/platform.service';
+import { data } from './environment';
 
 @Component({
   selector: 'app-root',
@@ -18,22 +20,23 @@ export class AppComponent implements OnInit {
     return this.preferenceService.getState(); 
   }
   private preferenceService = inject(PreferenceService);
+  private platformService = inject(PlatformService);
 
   items: Map<string, WritableSignal<Item[]>> = new Map([
-    ['melee', signal<Item[]>([])],
-    ['ranged', signal<Item[]>([])],
-    ['sorceries', signal<Item[]>([])],
-    ['incantations', signal<Item[]>([])],
-    ['ashes', signal<Item[]>([])],
-    ['war', signal<Item[]>([])],
-    ['shields', signal<Item[]>([])],
-    ['head', signal<Item[]>([])],
-    ['chest', signal<Item[]>([])],
-    ['arms', signal<Item[]>([])],
-    ['legs', signal<Item[]>([])],
-    ['talismans', signal<Item[]>([])],
-    ['key-items', signal<Item[]>([])],
-    ['ng', signal<Item[]>([])]
+    ['melee', signal<Item[]>(data.melee)],
+    ['ranged', signal<Item[]>(data.ranged)],
+    ['sorceries', signal<Item[]>(data.sorceries)],
+    ['incantations', signal<Item[]>(data.incantations)],
+    ['ashes', signal<Item[]>(data.ashes)],
+    ['war', signal<Item[]>(data.war)],
+    ['shields', signal<Item[]>(data.shields)],
+    ['head', signal<Item[]>(data.head)],
+    ['chest', signal<Item[]>(data.chest)],
+    ['arms', signal<Item[]>(data.arms)],
+    ['legs', signal<Item[]>(data.legs)],
+    ['talismans', signal<Item[]>(data.talismans)],
+    ['key-items', signal<Item[]>(data.keyItems)],
+    ['ng', signal<Item[]>(data.ng)]
   ]);
 
   itemsDisplayName: Map<string, string> = new Map([
@@ -66,18 +69,14 @@ export class AppComponent implements OnInit {
   isHideBaseGame = computed(() => this.preferenceService.hideBaseGame());
 
   async ngOnInit() {
-    this.restoreFromLocalStorage();
-  }
-
-  async fetchItems(type: string): Promise<Item[]> {
-    const response = await fetch(`items/${type}.json`);
-    return await response.json();
+    if(this.platformService.isBrowser()){
+      this.restoreFromLocalStorage();
+    }
   }
 
   restoreFromLocalStorage() {
     let restored = false;
     this.items.forEach(async (signal, key) => {
-      signal.set(await this.fetchItems(key));
       
       const storedData = localStorage.getItem(key);
       if (!storedData) return;
@@ -139,7 +138,9 @@ export class AppComponent implements OnInit {
                   return item;
                 });
                 signal.set(updatedItems);
-                localStorage.setItem(key, JSON.stringify(updatedItems.filter(item => item.completed)));
+                if(this.platformService.isBrowser()){
+                  localStorage.setItem(key, JSON.stringify(updatedItems.filter(item => item.completed)));
+                }
               }
             });
           } catch (jsonError) {
@@ -183,7 +184,9 @@ export class AppComponent implements OnInit {
   reset(){
     this.items.forEach((signal, key) => {
       signal().forEach(item => item.completed = false);
-      localStorage.removeItem(key);
+      if(this.platformService.isBrowser()){
+        localStorage.removeItem(key);
+      }
     });
     this.isResetModalOpen.set(false);
     this.logger('resetAll');
@@ -191,7 +194,9 @@ export class AppComponent implements OnInit {
 
   resetPage(){;
     this.items.get(this.selectedType())!().forEach(item => item.completed = false);
-    localStorage.removeItem(this.selectedType());
+    if(this.platformService.isBrowser()){
+      localStorage.removeItem(this.selectedType());
+    }
     this.isResetPageModalOpen.set(false);
     this.logger('resetPage');
     window.location.reload();

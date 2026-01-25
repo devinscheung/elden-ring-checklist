@@ -2,6 +2,7 @@ import { Component, computed, effect, inject, input, signal } from '@angular/cor
 import { ReactiveFormsModule, FormBuilder, FormGroup } from '@angular/forms';
 import { PreferenceService } from '../services/preference.service';
 import { Item } from '../interface/item';
+import { PlatformService } from '../services/platform.service';
 
 @Component({
   selector: 'app-list',
@@ -14,6 +15,7 @@ export class ListComponent {
 
   private fb = inject(FormBuilder);
   private preferenceService = inject(PreferenceService);
+  private platformService = inject(PlatformService);
   
   data = input<Item[]>([]);
   type = input('');
@@ -60,7 +62,9 @@ export class ListComponent {
 
   changed(event:any, item:any){
     item.completed = event.target.checked;
-    localStorage.setItem(this.type(), JSON.stringify(this.data().filter(item => item.completed)));
+    if(this.platformService.isBrowser()) {
+      localStorage.setItem(this.type(), JSON.stringify(this.data().filter(item => item.completed)));
+    }
     this.selectedNumber.set(this.data().filter(item => item.completed).length);
   }
 }
