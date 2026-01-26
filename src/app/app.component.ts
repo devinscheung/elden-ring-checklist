@@ -105,7 +105,7 @@ export class AppComponent implements OnInit {
     const dataStr = JSON.stringify(selectedItems);
     const dataUri = 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr);
     const today = new Date().toISOString().split('T')[0];
-    const exportFileDefaultName = 'eldenring.devinsc.com-' + today + '.json';
+    const exportFileDefaultName = 'devin.uk_app_elden-ring(' + today + ').json';
   
     const linkElement = document.createElement('a');
     linkElement.setAttribute('href', dataUri);

@@ -5,7 +5,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <div align="center">
-  <a href="https://github.com/othneildrew/Best-README-Template">
+  <a href="https://devin.uk/app/elden-ring/">
     <img src="public/favicon.ico" alt="Logo" width="80" height="80">
   </a>
   <h3 align="center">艾爾登法環</h3>
@@ -16,7 +16,7 @@
     <span>如果你喜歡此工具，請給這個專案一顆🌟，非常感謝!</span>
     <br />
     <br />
-    <a href="https://eldenring.devinsc.com" target="_blank">網站連結</a>
+    <a href="https://devin.uk/app/elden-ring/" target="_blank">網站連結</a>
     ·
     <a href="https://github.com/devinscheung/elden-ring-checklist/issues/new?labels=bug&template=bug-report---.md">回報問題</a>
     ·
