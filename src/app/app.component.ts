@@ -5,6 +5,7 @@ import { ListComponent } from './list/list.component';
 import { Item } from './interface/item';
 import { PlatformService } from './services/platform.service';
 import { data } from './environment';
+declare var gtag: Function;
 
 @Component({
     selector: 'app-root',
@@ -198,12 +199,14 @@ export class AppComponent implements OnInit {
     window.location.reload();
   }
 
-  logger(event:string){
-    fetch(`https://api.eldenring.devinsc.com/${event}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'}
-    }).catch((error) => {
-      console.error('Error logging app loaded event:', error);
-    });
+  logger(event: string) {
+    if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', event, {
+          'app_platform': 'elden-ring-tracker',
+          'event_category': 'user_interaction'
+        });
+      }
+    }
   }
 }
