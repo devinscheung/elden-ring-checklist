@@ -15,9 +15,6 @@ import { data } from './environment';
 export class AppComponent implements OnInit {
   title = 'elden-ring-checklist';
 
-  @HostBinding('class.dark') get mode() { 
-    return this.preferenceService.getState(); 
-  }
   private preferenceService = inject(PreferenceService);
   private platformService = inject(PlatformService);
 

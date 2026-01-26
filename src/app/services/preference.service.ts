@@ -7,24 +7,30 @@ import { PlatformService } from './platform.service';
 export class PreferenceService {
 
   private platformService = inject(PlatformService);
-  private darkMode = signal<boolean>(false);
+  private darkMode = signal<boolean>(
+    this.platformService.isBrowser() 
+      ? document.documentElement.classList.contains('dark') 
+      : false
+  );
+
   hideCompleted = signal(false);
   hideDLC = signal(false);
   hideBaseGame = signal(false);
 
   constructor() {
-    if(this.platformService.isBrowser()) {
-      const restore = localStorage.getItem('dark-mode');
-      if (restore) {
-        this.darkMode.set(restore === 'true');
-      } else {
-        this.darkMode.set(window.matchMedia('(prefers-color-scheme: dark)').matches);
-      }
-    }
-
     effect(() => {
       if(this.platformService.isBrowser()) {
-        localStorage.setItem('dark-mode', this.darkMode().toString());
+        const isDark = this.darkMode();
+        
+        // sync to localStorage
+        localStorage.setItem('dark-mode', isDark.toString());
+        
+        // directly control html tag (better than @HostBinding)
+        if (isDark) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
       }
     });
   }

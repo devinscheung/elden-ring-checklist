@@ -68,6 +68,19 @@
       ]
     }
   </script>
+  <script>
+    (function() {
+      // prevent flash in darkmode
+      const isDark = localStorage.getItem('dark-mode') === 'true' 
+        || (!('dark-mode' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    })();
+  </script>
 </head>
 <body>
   <app-root></app-root>
