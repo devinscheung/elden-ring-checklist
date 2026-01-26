@@ -20,7 +20,7 @@
                     <div class="grow mt-0.5 space-y-3">
                         <div class="flex items-center">
                             <label class="flex items-center cursor-pointer">
-                                <input (change)="changed($event, item)" type="checkbox" [checked]="item.completed" class="form-checkbox w-4 h-4 !rounded-full peer" />
+                                <input (change)="changed($event, item)" type="checkbox" [checked]="item.completed" class="form-checkbox w-4 h-4 rounded-full! peer" />
                                 <span class="text-slate-800 dark:text-slate-100 peer-checked:line-through ml-2">{{item.name}}</span>
                                 @if(item.dlc){
                                     <span class="text-green-600 dark:text-green-500 text-sm ml-2">DLC</span>
@@ -42,7 +42,7 @@
                             
                             @if(notes()==item.name){
                                 <div class="z-10 absolute bottom-full left-1/2 transform -translate-x-full sm:-translate-x-1/2">
-                                    <div class="min-w-[12rem] bg-slate-100 p-2 rounded overflow-hidden mb-2">
+                                    <div class="min-w-48 bg-slate-100 p-2 rounded overflow-hidden mb-2">
                                         <div class="text-xs text-slate-800">{{item.notes}}</div>
                                     </div>
                                 </div>

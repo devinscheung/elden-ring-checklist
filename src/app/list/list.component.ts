@@ -56,7 +56,7 @@ export class ListComponent {
 
     effect(() => {
       this.selectedNumber.set(this.data().filter(item => item.completed).length);
-    }, { allowSignalWrites: true })
+    })
   }
 
   changed(event:any, item:any){

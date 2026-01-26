@@ -34,7 +34,9 @@
             "prerender": true,
             "ssr": {
               "entry": "server.ts"
-            }
+            },
+            "baseHref": "/app/elden-ring/",
+            "deployUrl": "/app/elden-ring/"
           },
           "configurations": {
             "production": {
