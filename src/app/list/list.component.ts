@@ -5,11 +5,10 @@ import { Item } from '../interface/item';
 import { PlatformService } from '../services/platform.service';
 
 @Component({
-  selector: 'app-list',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.css'
+    selector: 'app-list',
+    imports: [ReactiveFormsModule],
+    templateUrl: './list.component.html',
+    styleUrl: './list.component.css'
 })
 export class ListComponent {
 

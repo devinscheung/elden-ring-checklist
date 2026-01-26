@@ -7,11 +7,10 @@ import { PlatformService } from './services/platform.service';
 import { data } from './environment';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [NgClass, ListComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+    selector: 'app-root',
+    imports: [NgClass, ListComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.css'
 })
 export class AppComponent implements OnInit {
   title = 'elden-ring-checklist';
