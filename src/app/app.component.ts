@@ -203,8 +203,9 @@ export class AppComponent implements OnInit {
     if (window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1') {
       if (typeof gtag !== 'undefined') {
         gtag('event', event, {
-          'app_platform': 'elden-ring-tracker',
-          'event_category': 'user_interaction'
+          'app_name': 'app-elden-ring',
+          'event_category': 'app_interaction',
+          'source_domain': window.location.hostname
         });
       }
     }
