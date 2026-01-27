@@ -60,10 +60,12 @@ export class AppComponent implements OnInit {
   notes = signal('');
   isResetModalOpen = signal(false);
   isResetPageModalOpen = signal(false);
+  isShowNotification = signal(false);
 
   isHideCompleted = computed(() => this.preferenceService.hideCompleted());
   isHideDLC = computed(() => this.preferenceService.hideDLC());
   isHideBaseGame = computed(() => this.preferenceService.hideBaseGame());
+
 
   async ngOnInit() {
     if(this.platformService.isBrowser()){
@@ -72,6 +74,11 @@ export class AppComponent implements OnInit {
   }
 
   restoreFromLocalStorage() {
+    // notification
+    const isClosed = localStorage.getItem('notification_closed') === 'true';
+    this.isShowNotification.set(!isClosed);
+
+    // selected items
     let restored = false;
     this.items.forEach(async (signal, key) => {
       
@@ -176,6 +183,14 @@ export class AppComponent implements OnInit {
 
   getPagedData(){
     return this.items.get(this.selectedType())!();
+  }
+
+  closeNotification(){
+    this.isShowNotification.set(false);
+    if(this.platformService.isBrowser()){
+      localStorage.setItem('notification_closed', 'true');
+    }
+    this.logger('closeNotification');
   }
 
   reset(){
