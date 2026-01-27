@@ -100,8 +100,9 @@
           <div class="flex justify-between">
             <div class="grid grid-flow-col sm:auto-cols-max gap-2">
               <p class="text-sm">版本v1.4.0 | </p>
-              <p class="text-sm"><a href="https://github.com/devinscheung/elden-ring-checklist/issues" target="_blank" class="underline">回報問題</a> | </p>
-              <p class="text-sm"><a href="https://forum.gamer.com.tw/Co.php?bsn=36726&sn=62653" target="_blank" class="underline">巴哈姆特</a></p>
+              <p class="text-sm"><a href="https://github.com/devinscheung/elden-ring-checklist/issues" target="_blank" rel="noopener" class="underline">回報問題</a> | </p>
+              <p class="text-sm"><a href="https://forum.gamer.com.tw/Co.php?bsn=36726&sn=62653" target="_blank" rel="noopener" class="underline">巴哈姆特</a> | </p>
+              <p class="text-sm"><a (click)="logger('clickSponsor')" href="https://buymeacoffee.com/devin.uk" target="_blank" rel="noopener" class="underline" title="請開發者喝杯咖啡，支持網站持續維護" aria-label="贊助開發者以支持小站營運">贊助小站</a></p>
             </div>
             <div class="grid grid-flow-col sm:auto-cols-max gap-2">
               <button (click)="isResetPageModalOpen.set(true)" class="btn-danger">
